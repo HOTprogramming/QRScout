@@ -19,7 +19,7 @@
         },
          {
           "title": "Color",
-          "type": "Select",
+          "type": "select",
           "required": true,
           "code": "alliancecolor"
           "choices": {
