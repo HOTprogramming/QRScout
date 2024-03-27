@@ -1,16 +1,15 @@
 {
-  "title": "QRScout",
+  "title": "HOT 67 QRScout",
   "page_title": "Crescendo",
   "sections": [
     {
-      "name": "Prematch",
+      "name": "Auton",
       "fields": [
         {
-          "title": "Scouter Initials",
-          "type": "text",
+          "title": "Team",
+          "type": "number",
           "required": true,
-          "code": "scouter",
-          "preserveDataOnReset": true
+          "code": "teamNumber"
         },
         {
           "title": "Match Number",
@@ -19,79 +18,15 @@
           "code": "matchNumber"
         },
         {
-          "title": "Robot",
-          "type": "select",
-          "required": true,
-          "code": "robot",
-          "choices": {
-            "R1": "Red 1",
-            "R2": "Red 2",
-            "R3": "Red 3",
-            "B1": "Blue 1",
-            "B2": "Blue 2",
-            "B3": "Blue 3"
-          },
-          "defaultValue": "R1",
-          "preserveDataOnReset": true
-        },
-        {
-          "title": "Team Number",
-          "type": "number",
-          "required": true,
-          "code": "teamNumber"
-        },
-        {
-          "title": "Human Player at Amp",
-          "type": "boolean",
-          "required": false,
-          "defaultValue": false,
-          "code": "humanPlayer"
-        },
-        {
-          "title": "No Show",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false,
-          "code": "noShow"
-        }
-      ]
-    },
-    {
-      "name": "Autonomous",
-      "fields": [
-        {
-          "title": "Mobility?",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false,
-          "code": "Mved"
-        },
-        {
-          "code": "auamp",
-          "title": "Amp Scored",
+          "code": "autoSpeakerMade",
+          "title": "Speaker Made",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
         },
         {
-          "code": "auampm",
-          "title": "Amp Missed",
-          "type": "counter",
-          "defaultValue": 0,
-          "min": 0,
-          "required": false
-        },
-        {
-          "code": "ausc",
-          "title": "Speaker Scored",
-          "type": "counter",
-          "defaultValue": 0,
-          "min": 0,
-          "required": false
-        },
-        {
-          "code": "auskpm",
+          "code": "autoSpeakerMissed",
           "title": "Speaker Missed",
           "type": "counter",
           "defaultValue": 0,
@@ -99,12 +34,117 @@
           "required": false
         },
         {
-          "code": "auf",
-          "title": "Auto Foul",
+          "code": "autoAmp",
+          "title": "Amp",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
+        },
+        {
+          "title": "Cross line",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false,
+          "code": "crossLine"
+        },
+        {
+          "title": "Start Pose",
+          "type": "select",
+          "required": true,
+          "code": "startPose",
+          "choices": {
+            "Human Player Station": "Human Player Station",
+            "Middle": "Middle",
+            "Amp": "Amp"
+          },
+          "defaultValue": "Middle",
+          "preserveDataOnReset": true
+        }
+      ]
+    },
+    {
+      "name": "Centerline Rings",
+      "fields": [
+        {
+          "title": "1st Center Line Note",
+          "type": "select",
+          "required": true,
+          "code": "center1",
+          "choices": {
+            "None": "None",
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "Five": "5"
+          },
+          "defaultValue": "None",
+          "preserveDataOnReset": true
+        },
+        {
+          "title": "2nd Center Line Note",
+          "type": "select",
+          "required": true,
+          "code": "center2",
+          "choices": {
+            "None": "None",
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "Five": "5"
+          },
+          "defaultValue": "None",
+          "preserveDataOnReset": true
+        },
+        {
+          "title": "3rd Center Line Note",
+          "type": "select",
+          "required": true,
+          "code": "center3",
+          "choices": {
+            "None": "None",
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "Five": "5"
+          },
+          "defaultValue": "None",
+          "preserveDataOnReset": true
+        },
+        {
+          "title": "4th Center Line Note",
+          "type": "select",
+          "required": true,
+          "code": "center4",
+          "choices": {
+            "None": "None",
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "Five": "5"
+          },
+          "defaultValue": "None",
+          "preserveDataOnReset": true
+        },
+        {
+          "title": "5th Center Line Note",
+          "type": "select",
+          "required": true,
+          "code": "center5",
+          "choices": {
+            "None": "None",
+            "One": "1",
+            "Two": "2",
+            "Three": "3",
+            "Four": "4",
+            "Five": "5"
+          },
+          "defaultValue": "None",
+          "preserveDataOnReset": true
         }
       ]
     },
@@ -112,38 +152,23 @@
       "name": "Teleop",
       "fields": [
         {
-          "code": "tcoop",
-          "title": "Coopertition",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false
-        },
-        {
-          "code": "tamps",
-          "title": "Amp Scored",
+          "code": "teleopAmp",
+          "title": "Amp",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
         },
         {
-          "code": "tampm",
-          "title": "Amp Missed",
+          "code": "teleopSpeakerMade",
+          "title": "Speaker Made",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
         },
         {
-          "code": "tsc",
-          "title": "Speaker Scored",
-          "type": "counter",
-          "defaultValue": 0,
-          "min": 0,
-          "required": false
-        },
-        {
-          "code": "tsm",
+          "code": "teleopSpeakerMissed",
           "title": "Speaker Missed",
           "type": "counter",
           "defaultValue": 0,
@@ -151,19 +176,19 @@
           "required": false
         },
         {
-          "code": "cn",
-          "title": "Note in Trap?",
-          "type": "counter",
-          "defaultValue": 0,
-          "min": 0,
-          "required": false
-        },
-        {
-          "code": "Fou/Tech",
-          "title": "Teleop Foul",
-          "type": "counter",
-          "defaultValue": 0,
-          "required": false
+          "title": "Preferred Shooting Pose",
+          "type": "select",
+          "required": true,
+          "code": "preferredShootingPose",
+          "choices": {
+            "Point Blank": "Point Blank",
+            "Protected": "Protected",
+            "Wing Line": "Wing Line",
+            "Midline": "Midline",
+            "Amp": "Amp"
+          },
+          "defaultValue": "Point Blank",
+          "preserveDataOnReset": true
         }
       ]
     },
@@ -171,95 +196,59 @@
       "name": "Endgame",
       "fields": [
         {
-          "title": "End Position",
-          "type": "select",
-          "required": true,
-          "code": "epo",
-          "choices": {
-            "No": "No Climb",
-            "Fc": "Failed Climb",
-            "P": "Parked",
-            "Os": "Onstage",
-            "Sl": "Spotlight"
-          },
-          "defaultValue": "No Climb"
-        },
-        {
-          "title": "Harmony",
-          "type": "select",
-          "required": true,
-          "code": "harm",
-          "choices": {
-            "Not": "Not Completed",
-            "Fir": "First on Chain",
-            "Sec": "Second on Chain",
-            "Thir": "Third on Chain"
-          },
-          "defaultValue": "Not Completed"
-        }
-      ]
-    },
-    {
-      "name": "Postmatch",
-      "fields": [
-        {
-          "code": "or",
-          "title": "Offense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "required": false
-        },
-        {
-          "code": "dr",
-          "title": "Defense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "defaultValue": "x",
-          "required": false
-        },
-        {
-          "code": "d",
-          "title": "Died",
+          "title": "Defended Against",
           "type": "boolean",
           "defaultValue": false,
-          "required": false
+          "required": false,
+          "code": "defendedAgainst"
         },
         {
-          "code": "to",
-          "title": "Tipped Over",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false
-        },
-        {
-          "code": "yc",
-          "title": "Yellow/Red Card",
-          "type": "select",
-          "defaultValue": "No Card",
-          "required": true,
-          "choices": {
-            "No Card": "No Card",
-            "Yellow": "Yellow Card",
-            "Red": "Red Card"
-          }
-        },
-
-        {
-          "code": "co",
-          "title": "Comments",
-          "type": "text",
+          "code": "defenseTime",
+          "title": "Defense Time",
+          "type": "counter",
+          "defaultValue": 0,
           "min": 0,
-          "max": 50,
+          "required": false
+        },
+        {
+          "title": "Climb Attempt",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false,
+          "code": "climbAttempt"
+        },
+        {
+          "title": "End Pose",
+          "type": "select",
+          "required": true,
+          "code": "endPose",
+          "choices": {
+            "Nothing": "Nothing",
+            "Park": "Park",
+            "Hang": "Hang"
+          },
+          "defaultValue": "Nothing"
+        },
+        {
+          "title": "Trap Note",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false,
+          "code": "trapNote"
+        },
+        {
+          "title": "Notes",
+          "type": "text",
+          "required": true,
+          "code": "notes",
+          "preserveDataOnReset": true
+        },
+        {
+          "code": "timeToClimb",
+          "title": "Time To Climb",
+          "type": "counter",
+          "defaultValue": 0,
+          "min": 0,
           "required": false
         }
       ]
