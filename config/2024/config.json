@@ -86,11 +86,11 @@
           "code": "center1",
           "choices": {
             "None": "None",
-            "One": "1",
-            "Two": "2",
-            "Three": "3",
-            "Four": "4",
-            "Five": "5"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
           },
           "defaultValue": "None",
           "preserveDataOnReset": false
@@ -102,11 +102,11 @@
           "code": "center2",
           "choices": {
             "None": "None",
-            "One": "1",
-            "Two": "2",
-            "Three": "3",
-            "Four": "4",
-            "Five": "5"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
           },
           "defaultValue": "None",
           "preserveDataOnReset": false
@@ -118,11 +118,11 @@
           "code": "center3",
           "choices": {
             "None": "None",
-            "One": "1",
-            "Two": "2",
-            "Three": "3",
-            "Four": "4",
-            "Five": "5"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
           },
           "defaultValue": "None",
           "preserveDataOnReset": false
@@ -134,11 +134,11 @@
           "code": "center4",
           "choices": {
             "None": "None",
-            "One": "1",
-            "Two": "2",
-            "Three": "3",
-            "Four": "4",
-            "Five": "5"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
           },
           "defaultValue": "None",
           "preserveDataOnReset": false
@@ -150,11 +150,11 @@
           "code": "center5",
           "choices": {
             "None": "None",
-            "One": "1",
-            "Two": "2",
-            "Three": "3",
-            "Four": "4",
-            "Five": "5"
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
           },
           "defaultValue": "None",
           "preserveDataOnReset": false
