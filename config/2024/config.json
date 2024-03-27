@@ -21,7 +21,7 @@
           "title": "Color",
           "type": "select",
           "required": true,
-          "code": "alliancecolor"
+          "code": "alliancecolor",
           "choices": {
             "RED": "RED",
             "BLUE": "BLUE",
