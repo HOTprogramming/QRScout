@@ -17,6 +17,19 @@
           "required": true,
           "code": "matchNumber"
         },
+         {
+          "title": "Color",
+          "type": "Select",
+          "required": true,
+          "code": "alliancecolor"
+          "choices": {
+            "RED": "RED",
+            "BLUE": "BLUE",
+            "NOT SELECTED": "NOT SELECTED"
+          },
+          "defaultValue": "NOT SELECTED",
+          "preserveDataOnReset": false
+        },
         {
           "code": "autoSpeakerMade",
           "title": "Speaker Made",
