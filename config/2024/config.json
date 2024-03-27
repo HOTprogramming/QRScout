@@ -59,7 +59,7 @@
             "Amp": "Amp"
           },
           "defaultValue": "Middle",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         }
       ]
     },
@@ -80,7 +80,7 @@
             "Five": "5"
           },
           "defaultValue": "None",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         },
         {
           "title": "2nd Center Line Note",
@@ -96,7 +96,7 @@
             "Five": "5"
           },
           "defaultValue": "None",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         },
         {
           "title": "3rd Center Line Note",
@@ -112,7 +112,7 @@
             "Five": "5"
           },
           "defaultValue": "None",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         },
         {
           "title": "4th Center Line Note",
@@ -128,7 +128,7 @@
             "Five": "5"
           },
           "defaultValue": "None",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         },
         {
           "title": "5th Center Line Note",
@@ -144,7 +144,7 @@
             "Five": "5"
           },
           "defaultValue": "None",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         }
       ]
     },
@@ -188,7 +188,7 @@
             "Amp": "Amp"
           },
           "defaultValue": "Point Blank",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         }
       ]
     },
@@ -239,9 +239,9 @@
         {
           "title": "Notes",
           "type": "text",
-          "required": true,
+          "required": false,
           "code": "notes",
-          "preserveDataOnReset": true
+          "preserveDataOnReset": false
         },
         {
           "code": "timeToClimb",
