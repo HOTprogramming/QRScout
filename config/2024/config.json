@@ -173,6 +173,14 @@
           "required": false
         },
         {
+          "code": "teleoplob",
+          "title": "Lobs Shot",
+          "type": "counter",
+          "defaultValue": 0,
+          "min": 0,
+          "required": false
+        },
+        {
           "code": "teleopSpeakerMade",
           "title": "Speaker Made",
           "type": "counter",
