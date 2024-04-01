@@ -173,8 +173,8 @@
           "required": false
         },
         {
-          "code": "teleoplob",
-          "title": "Lobs Shot",
+          "code": "teleopPassed",
+          "title": "Notes Passed Accross Field",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
