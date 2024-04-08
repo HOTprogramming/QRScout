@@ -271,6 +271,19 @@
           "defaultValue": 0,
           "min": 0,
           "required": false
+        },
+        {
+          "title": "What best fits the robot's role this match?",
+          "type": "select",
+          "required": true,
+          "code": "role",
+          "choices": {
+            "Cycling": "Cycling",
+            "Forward": "Staying Close to Goal",
+            "Passing": "Lobbing Accross Field",
+            "Defense": "Defense"
+          },
+          "defaultValue": "Nothing"
         }
       ]
     }
