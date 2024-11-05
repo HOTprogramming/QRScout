@@ -8,11 +8,6 @@ body {
 }
 
 @font-face {
-  font-family: 'SF Sports Night';
-  src: url('/fonts/SF Sports Night.ttf');
-}
-
-@font-face {
-  font-family: 'SF Sports Night NS';
-  src: url('/fonts/SF Sports Night NS.ttf');
+  font-family: 'Race Sport';
+  src: url('/fonts/Race Sport.ttf');
 }
