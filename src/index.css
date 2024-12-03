@@ -8,6 +8,6 @@ body {
 }
 
 @font-face {
-  font-family: 'Race Sport';
+  font-family: 'Race Sport', sans-serif;
   src: url('/fonts/Race Sport.ttf');
 }
