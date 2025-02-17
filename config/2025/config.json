@@ -80,19 +80,16 @@
           "formResetBehavior": "increment"
         },
         {
-          "title": "Robot",
-          "description": "The robot you are scouting this match, based on driver station position.",
+          "title": "Alliance",
+          "description": "The alliance the team you are scouting is playing on",
           "type": "select",
           "required": true,
-          "code": "robot",
-          "defaultValue": "R1",
+          "code": "alliance",
+          "defaultValue": "Not_Selected",
           "choices": {
-            "R1": "Red 1",
-            "R2": "Red 2",
-            "R3": "Red 3",
-            "B1": "Blue 1",
-            "B2": "Blue 2",
-            "B3": "Blue 3"
+            "Not_Selected": "Not Selected",
+            "Red": "Red",
+            "Blue": "Blue"
           },
           "formResetBehavior": "preserve"
         },
@@ -114,9 +111,9 @@
           "code": "Prsp",
           "defaultValue": "",
           "choices": {
-            "R1": "Left",
-            "R2": "Middle",
-            "R3": "Right"
+            "Processor": "Processor Side",
+            "Center": "Center",
+            "Far": "Opposite of Processor"
           }
         },
         {
@@ -127,17 +124,6 @@
           "code": "noShow",
           "defaultValue": false
         },
-        {
-          "title": "Cage Position",
-          "description": "The starting level of the cage",
-          "type": "select",
-          "required": true,
-          "code": "CPos",
-          "defaultValue": "",
-          "choices": {
-            "SP1": "Deep",
-            "SP2": "Shallow"
-          }
         }
       ]
     },
@@ -145,20 +131,12 @@
       "name": "Autonomous",
       "fields": [
         {
-          "title": "Moved?",
-          "description": "Check if the robot moved during autonomous.",
+          "title": "Left Auto Zone?",
+          "description": "Check if the robot moved off the auto line during autonomous.",
           "type": "boolean",
           "required": false,
           "code": "Mved",
           "defaultValue": false
-        },
-        {
-          "title": "Timer",
-          "description": "The time it took for the robot to finish autonomous.",
-          "type": "timer",
-          "required": false,
-          "code": "timer",
-          "defaultValue": 0
         },
         {
           "title": "Coral L1 Scored",
@@ -201,6 +179,16 @@
           "step": 1
         },
         {
+          "title": "Coral Dropped",
+          "description": "The number of coral dropped during autonomous.",
+          "type": "counter",
+          "required": false,
+          "code": "CLDp",
+          "defaultValue": 0,
+          "min": 0,
+          "step": 1
+        },
+        {
           "title": "Barge Algae Scored",
           "description": "The number of Algae scored in the barge during autonomous.",
           "type": "counter",
@@ -226,15 +214,6 @@
           "required": false,
           "code": "dto",
           "defaultValue": false
-        },
-        {
-          "title": "Auto Foul",
-          "type": "counter",
-          "required": false,
-          "code": "auf",
-          "defaultValue": 0,
-          "min": 0,
-          "step": 1
         }
       ]
     },
@@ -242,29 +221,24 @@
       "name": "Teleop",
       "fields": [
         {
-          "title": "Dislodged Algae?",
+          "title": "Ground Algae Intake?",
           "type": "boolean",
           "required": false,
-          "code": "daT",
+          "code": "grndA",
           "defaultValue": false
-        },
-        {
-          "title": "Pickup Location",
-          "type": "select",
+          },
+         {
+          "title": "Ground Coral Intake?",
+          "type": "boolean",
           "required": false,
-          "code": "TGPL",
-          "defaultValue": "",
-          "choices": {
-            "1": "None",
-            "2": "Ground",
-            "3": "Human Player",
-            "4": "Both"
+          "code": "grndC",
+          "defaultValue": false
           },
           "multiSelect": true
         },
         {
           "title": "Coral L1 Scored",
-          "description": "The number of level 1 coral scored during autonomous.",
+          "description": "The number of level 1 coral scored during teleop.",
           "type": "counter",
           "required": false,
           "code": "CLOT",
@@ -274,7 +248,7 @@
         },
         {
           "title": "Coral L2 Scored",
-          "description": "The number of level 2 coral scored during autonomous.",
+          "description": "The number of level 2 coral scored during teleop.",
           "type": "counter",
           "required": false,
           "code": "CLTT",
@@ -284,7 +258,7 @@
         },
         {
           "title": "Coral L3 Scored",
-          "description": "The number of level 3 coral scored during autonomous.",
+          "description": "The number of level 3 coral scored during teleop.",
           "type": "counter",
           "required": false,
           "code": "CLThT",
@@ -294,7 +268,7 @@
         },
         {
           "title": "Coral L4 Scored",
-          "description": "The number of level 4 coral scored during autonomous.",
+          "description": "The number of level 4 coral scored during teleop.",
           "type": "counter",
           "required": false,
           "code": "CLFT",
@@ -303,8 +277,18 @@
           "step": 1
         },
         {
+            "title": "Coral Dropped",
+            "description": "The number of coral dropped during teleop.",
+            "type": "counter",
+            "required": false,
+            "code": "CLDpT",
+            "defaultValue": 0,
+            "min": 0,
+            "step": 1
+          },
+        {
           "title": "Barge Algae Scored",
-          "description": "The number of Algae scored in the barge during autonomous.",
+          "description": "The number of Algae scored in the barge during teleop.",
           "type": "counter",
           "required": false,
           "code": "BAST",
@@ -312,9 +296,16 @@
           "min": 0,
           "step": 1
         },
+       {
+          "title": "Dislodged Algae?",
+          "type": "boolean",
+          "required": false,
+          "code": "daT",
+          "defaultValue": false
+        },
         {
           "title": "Processor Algae Scored",
-          "description": "The number of Algae scored in the processor during autonomous.",
+          "description": "The number of Algae scored in the processor during teleop.",
           "type": "counter",
           "required": false,
           "code": "PAST",
@@ -323,10 +314,10 @@
           "step": 1
         },
         {
-          "title": "Crossed Feild/Played Defense?",
+          "title": "Played Defense?",
           "type": "boolean",
           "required": false,
-          "code": "CFPDT",
+          "code": "PDT",
           "defaultValue": false
         },
         {
