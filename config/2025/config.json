@@ -71,6 +71,16 @@
           "formResetBehavior": "preserve"
         },
         {
+          "title": "Team Number",
+          "description": "The team number of the robot you're scouting.",
+          "type": "number",
+          "required": true,
+          "code": "teamNumber",
+          "defaultValue": 0,
+          "min": 0,
+          "max": 19999
+        },
+        {
           "title": "Match Number",
           "description": "Enter the match number.",
           "type": "number",
@@ -92,16 +102,6 @@
             "Blue": "Blue"
           },
           "formResetBehavior": "preserve"
-        },
-        {
-          "title": "Team Number",
-          "description": "The team number of the robot you're scouting.",
-          "type": "number",
-          "required": true,
-          "code": "teamNumber",
-          "defaultValue": 0,
-          "min": 0,
-          "max": 19999
         },
         {
           "title": "Starting Position",
