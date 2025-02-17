@@ -232,8 +232,7 @@
           "type": "boolean",
           "required": false,
           "code": "grndC",
-          "defaultValue": false
-          },
+          "defaultValue": false,
           "multiSelect": true
         },
         {
