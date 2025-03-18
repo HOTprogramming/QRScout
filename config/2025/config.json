@@ -67,8 +67,8 @@
           "type": "text",
           "required": true,
           "code": "scouter",
-          "defaultValue": "",
-          "formResetBehavior": "preserve"
+          "formResetBehavior": "preserve",
+          "defaultValue": ""
         },
         {
           "title": "Team Number",
@@ -76,6 +76,7 @@
           "type": "number",
           "required": true,
           "code": "teamNumber",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "max": 19999
@@ -86,8 +87,8 @@
           "type": "number",
           "required": true,
           "code": "matchNumber",
-          "defaultValue": 1,
-          "formResetBehavior": "increment"
+          "formResetBehavior": "increment",
+          "defaultValue": 1
         },
         {
           "title": "Alliance",
@@ -95,13 +96,13 @@
           "type": "select",
           "required": true,
           "code": "alliance",
+          "formResetBehavior": "preserve",
           "defaultValue": "Not_Selected",
           "choices": {
             "Not_Selected": "Not Selected",
             "Red": "Red",
             "Blue": "Blue"
-          },
-          "formResetBehavior": "preserve"
+          }
         },
         {
           "title": "Starting Position",
@@ -109,11 +110,12 @@
           "type": "select",
           "required": true,
           "code": "Prsp",
+          "formResetBehavior": "reset",
           "defaultValue": "",
           "choices": {
             "Processor": "Processor Side",
             "Center": "Center",
-            "Far": "Opposite of Processor"
+            "Far": "Non-Processor Side"
           }
         },
         {
@@ -122,6 +124,7 @@
           "type": "boolean",
           "required": false,
           "code": "noShow",
+          "formResetBehavior": "reset",
           "defaultValue": false
         }
       ]
@@ -135,14 +138,16 @@
           "type": "boolean",
           "required": false,
           "code": "Mved",
+          "formResetBehavior": "reset",
           "defaultValue": false
         },
         {
           "title": "Coral L1 Scored",
-          "description": "The number of level 1 coral scored during autonomous.",
+          "description": "The number of level 1 coral scored during autonomous. DO NOT INCLUDE CORAL THAT ACCIDENTALLY FELL TO L1 WHEN TRYING TO PLACE L2-4",
           "type": "counter",
           "required": false,
           "code": "CLOA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -153,6 +158,7 @@
           "type": "counter",
           "required": false,
           "code": "CLTA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -163,6 +169,7 @@
           "type": "counter",
           "required": false,
           "code": "CLThA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -173,16 +180,18 @@
           "type": "counter",
           "required": false,
           "code": "CLFA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
         },
         {
-          "title": "Coral Dropped",
-          "description": "The number of coral dropped during autonomous.",
+          "title": "Coral Placements Failed",
+          "description": "The number of coral dropped when trying to place at reef during autonomous.",
           "type": "counter",
           "required": false,
           "code": "CLDp",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -193,6 +202,7 @@
           "type": "counter",
           "required": false,
           "code": "BASA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -203,6 +213,7 @@
           "type": "counter",
           "required": false,
           "code": "PASA",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -212,6 +223,7 @@
           "type": "boolean",
           "required": false,
           "code": "dto",
+          "formResetBehavior": "reset",
           "defaultValue": false
         }
       ]
@@ -224,22 +236,24 @@
           "type": "boolean",
           "required": false,
           "code": "grndA",
+          "formResetBehavior": "reset",
           "defaultValue": false
-          },
-         {
+        },
+        {
           "title": "Ground Coral Intake?",
           "type": "boolean",
           "required": false,
           "code": "grndC",
-          "defaultValue": false,
-          "multiSelect": true
+          "formResetBehavior": "reset",
+          "defaultValue": false
         },
         {
           "title": "Coral L1 Scored",
-          "description": "The number of level 1 coral scored during teleop.",
+          "description": "The number of level 1 coral scored during teleop. DO NOT INCLUDE CORAL THAT ACCIDENTALLY FELL TO L1 WHEN TRYING TO PLACE L2-4",
           "type": "counter",
           "required": false,
           "code": "CLOT",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -250,6 +264,7 @@
           "type": "counter",
           "required": false,
           "code": "CLTT",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -260,6 +275,7 @@
           "type": "counter",
           "required": false,
           "code": "CLThT",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -270,35 +286,39 @@
           "type": "counter",
           "required": false,
           "code": "CLFT",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
         },
         {
-            "title": "Coral Dropped",
-            "description": "The number of coral dropped during teleop.",
-            "type": "counter",
-            "required": false,
-            "code": "CLDpT",
-            "defaultValue": 0,
-            "min": 0,
-            "step": 1
-          },
+          "title": "Coral Dropped At Reef",
+          "description": "The number of coral dropped when trying to place on the reef during teleop.",
+          "type": "counter",
+          "required": false,
+          "code": "CLDpT",
+          "formResetBehavior": "reset",
+          "defaultValue": 0,
+          "min": 0,
+          "step": 1
+        },
         {
           "title": "Barge Algae Scored",
           "description": "The number of Algae scored in the barge during teleop.",
           "type": "counter",
           "required": false,
           "code": "BAST",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
         },
-       {
+        {
           "title": "Dislodged Algae?",
           "type": "boolean",
           "required": false,
           "code": "daT",
+          "formResetBehavior": "reset",
           "defaultValue": false
         },
         {
@@ -307,6 +327,7 @@
           "type": "counter",
           "required": false,
           "code": "PAST",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
           "step": 1
@@ -316,6 +337,7 @@
           "type": "boolean",
           "required": false,
           "code": "PDT",
+          "formResetBehavior": "reset",
           "defaultValue": false
         },
         {
@@ -323,6 +345,7 @@
           "type": "boolean",
           "required": false,
           "code": "TFOT",
+          "formResetBehavior": "reset",
           "defaultValue": false
         },
         {
@@ -330,6 +353,7 @@
           "type": "counter",
           "required": false,
           "code": "Fou/Tech",
+          "formResetBehavior": "reset",
           "defaultValue": 0,
           "step": 1
         },
@@ -338,6 +362,7 @@
           "type": "boolean",
           "required": false,
           "code": "DEg",
+          "formResetBehavior": "reset",
           "defaultValue": false
         }
       ]
@@ -350,6 +375,7 @@
           "type": "select",
           "required": true,
           "code": "epo",
+          "formResetBehavior": "reset",
           "defaultValue": "No",
           "choices": {
             "No": "Not Parked",
@@ -361,9 +387,11 @@
         },
         {
           "title": "Defended?",
+          "description": "Had defense played against their alliance that prevented them from scoring coral",
           "type": "boolean",
           "required": false,
           "code": "DEFEg",
+          "formResetBehavior": "reset",
           "defaultValue": false
         }
       ]
@@ -372,30 +400,11 @@
       "name": "Postmatch",
       "fields": [
         {
-          "title": "Offense Skill",
-          "type": "range",
-          "required": false,
-          "code": "or",
-          "defaultValue": 3,
-          "min": 1,
-          "max": 5,
-          "step": 1
-        },
-        {
-          "title": "Defensive Skill",
-          "type": "range",
-          "required": false,
-          "code": "dr",
-          "defaultValue": 3,
-          "min": 1,
-          "max": 5,
-          "step": 1
-        },
-        {
           "title": "Yellow/Red Card",
           "type": "select",
           "required": true,
           "code": "yc",
+          "formResetBehavior": "reset",
           "defaultValue": "No Card",
           "choices": {
             "No Card": "No Card",
@@ -408,9 +417,10 @@
           "type": "text",
           "required": false,
           "code": "co",
+          "formResetBehavior": "reset",
           "defaultValue": "",
           "min": 0,
-          "max": 50
+          "max": 500
         }
       ]
     }
