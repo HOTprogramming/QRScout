@@ -6,6 +6,19 @@ hotprogramming.github.io/QRScout/
 
 A QR Code-based scouting system for FRC
 
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Using QRScout](#using-qrscout)
+  - [Hosting a Custom JSON Config](#hosting-a-custom-json-config-for-your-team)
+- [config.json](#configjson)
+  - [Root](#root)
+  - [Individual Sections](#individual-sections)
+  - [Individual Fields](#individual-fields)
+  - [Using Multi-Select Input](#using-multi-select-input)
+  - [Using Image Input](#using-image-input)
+  - [Using Timer Input](#using-timer-input)
+
 ## Getting started
 
 QRScout is a web app. To open it, all 3you have to do is visit https://frc2713.github.io/QRScout/
@@ -32,6 +45,7 @@ Clicking on Edit Config leads you to the following screen:
 The text editor allows you to edit the `config.json` file (see below). Click the Save button to save any changes you make.
 
 Once you create a custom `config.json` file for your team, there are 2 ways to leverage it in competition:
+
 1. Download the custom `config.json` file to each tablet / device for your scouts and upload it to QRScout using the "Upload Config" button in the options menu.
 2. Host the custom `config.json` file in a public GitHub repository and load it into QRScout using the "Load from URL" button in the settings menu.
 
@@ -83,7 +97,7 @@ The basic structure of the config.json file is as follows:
 
 `title`: The name of this field
 
-`type`: One of "text", "number", "boolean", "range", "select", "counter", "image" or "timer". Describes the type of input this is.
+`type`: One of "text", "number", "boolean", "range", "select", "counter", "timer", "multi-select", or "image". Describes the type of input this is.
 
 `required`: a boolean indicating if this must be filled out before the QRCode is generated. If any field with this set to true is not filled out, QRScout will not generate a QRCode when the commit button is pressed.
 
@@ -106,4 +120,250 @@ The basic structure of the config.json file is as follows:
 }
 ```
 
+For "multiselect" type fields, these choices represent the available options that can be selected.
+
 `defaultValue`: The default value of this field.
+
+### Using Multi-Select Input
+
+The multi-select input type allows users to select multiple options from a predefined list. This is useful for scenarios where multiple attributes or capabilities need to be recorded simultaneously.
+
+#### Configuration in config.json
+
+To configure a multi-select field in your `config.json`:
+
+```json
+{
+  "title": "Robot Capabilities",
+  "type": "multiselect",
+  "required": false,
+  "code": "robotCapabilities",
+  "choices": {
+    "1": "Shooting",
+    "2": "Climbing",
+    "3": "Intake",
+    "4": "Defense",
+    "5": "Autonomous"
+  },
+  "formResetBehavior": "reset",
+  "defaultValue": ["1", "3"]
+}
+```
+
+#### Using Multi-Select in the Form
+
+When using a multi-select input:
+
+1. Click on any option to select it (it will be highlighted)
+2. Click on a selected option to deselect it
+3. You can select as many options as needed
+4. The QR code will include all selected values, separated by a special character
+
+#### Data Format
+
+In the generated QR code, multi-select values are stored as a comma-separated list of the selected choice keys. For example, if "Shooting" (1) and "Climbing" (2) are selected, the QR code will contain `1,2` for that field.
+
+For multi-select fields, the `defaultValue` should be an array of strings representing the keys of the choices you want pre-selected when the form loads.
+
+#### Processing Multi-Select Data
+
+When analyzing the data in spreadsheets:
+
+1. You may want to create separate columns for each possible choice to make analysis easier
+2. Use spreadsheet functions to check if a specific value exists in the comma-separated list
+3. For example, in Google Sheets, you can use: `=REGEXMATCH(A2, "1")` to check if option "1" was selected in cell A2
+
+This allows for more detailed filtering and statistical analysis of which capabilities or attributes were most common across matches.
+
+#### FRC Scouting Example
+
+Multi-select is particularly useful for FRC scouting in scenarios like:
+
+- **Game Piece Handling**: Track which game pieces a robot can manipulate
+- **Scoring Locations**: Record all the places a robot can score (low goal, high goal, etc.)
+- **Robot Subsystems**: Document the subsystems observed on a robot
+- **Failure Modes**: Track multiple types of failures that might occur during a match
+- **Defense Capabilities**: Record specific defensive actions a robot can perform
+
+For example, in a game where robots can score in multiple locations, you might configure:
+
+```json
+{
+  "title": "Scoring Locations",
+  "type": "multi-select",
+  "required": true,
+  "code": "scoringLocations",
+  "choices": {
+    "1": "Low Goal",
+    "2": "Mid Goal",
+    "3": "High Goal",
+    "4": "Terminal",
+    "5": "Charging Station"
+  },
+  "formResetBehavior": "reset"
+}
+```
+
+This allows scouts to quickly record all locations where a robot successfully scored during a match.
+
+### Using Image Input
+
+The image input type allows you to display static images in your scouting form. This is useful for showing field layouts, robot diagrams, game piece locations, or any visual reference that helps scouts accurately record data.
+
+#### Configuration in config.json
+
+To configure an image field in your `config.json`:
+
+```json
+{
+  "title": "Field Layout",
+  "type": "image",
+  "required": false,
+  "code": "fieldLayout",
+  "description": "Reference diagram of the field",
+  "defaultValue": "https://example.com/path/to/field-layout.jpg",
+  "width": 400,
+  "height": 300,
+  "alt": "2024 FRC Field Layout Diagram",
+  "formResetBehavior": "preserve"
+}
+```
+
+#### Image Input Properties
+
+- **defaultValue**: The URL to the statically hosted image. This should be a publicly accessible URL.
+- **width** (optional): The width of the image in pixels. If not specified, the image will use responsive sizing.
+- **height** (optional): The height of the image in pixels. If not specified, the image will maintain its aspect ratio.
+- **alt** (optional): Alternative text for the image for accessibility. If not provided, it will use the title.
+
+#### Interactive Features
+
+- **Click to Enlarge**: Users can click on any image to open a full-size version in a dialog. This is particularly useful for detailed diagrams or when images need to be examined more closely.
+
+#### Best Practices for Image Input
+
+1. **Host Images Reliably**: Ensure your images are hosted on a reliable service that will be accessible during competition, even with limited internet connectivity.
+2. **Optimize Image Size**: Use appropriately sized and compressed images to ensure fast loading times, especially on tablets or devices with slower connections.
+3. **Consider Offline Use**: For critical reference images, consider embedding them directly in your application or providing a local fallback.
+4. **Use Descriptive Alt Text**: Provide meaningful alternative text to ensure accessibility for all users.
+5. **Provide Context**: Let users know they can click on images to view them in full size, especially for detailed diagrams or maps.
+
+#### FRC Scouting Examples
+
+Image inputs are particularly useful for FRC scouting in scenarios like:
+
+- **Field Layout Reference**: Show the competition field with labeled zones for more accurate position reporting
+- **Robot Diagram**: Display a diagram of a robot with numbered components for reference
+- **Scoring Locations**: Visualize different scoring positions or game elements
+- **Strategy Diagrams**: Show predefined strategies or paths that scouts should watch for
+- **Game Piece Identification**: Display images of the current season's game pieces for reference
+
+For example, to include a field diagram in your scouting form:
+
+```json
+{
+  "title": "Field Reference",
+  "type": "image",
+  "required": false,
+  "code": "fieldReference",
+  "description": "Use this diagram to identify field positions",
+  "defaultValue": "https://yourteam.org/resources/field-diagram-2024.jpg",
+  "width": 500,
+  "formResetBehavior": "preserve"
+}
+```
+
+This allows scouts to reference the field layout while recording robot positions or movements during a match.
+
+### Using Timer Input
+
+The timer input type allows users to measure and record time durations during a match. This is particularly useful for tracking how long robots take to perform specific actions or measuring cycle times for repeated tasks.
+
+#### Configuration in config.json
+
+To configure a timer field in your `config.json`:
+
+```json
+{
+  "title": "Climb Time",
+  "type": "timer",
+  "required": false,
+  "code": "climbTime",
+  "description": "Time taken to complete climb",
+  "formResetBehavior": "reset",
+  "defaultValue": 0,
+  "outputType": "average"
+}
+```
+
+#### Timer Input Properties
+
+- **defaultValue**: The initial value of the timer in seconds (typically 0).
+- **description** (optional): A brief explanation of what the timer is measuring.
+- **outputType**: Determines how multiple timer values are processed. Can be either:
+  - `"average"` (default): Records the average of all timer values.
+  - `"list"`: Records all timer values as a list.
+
+#### Using Timer in the Form
+
+The timer input provides a simple interface with the following controls:
+
+1. **Start/Stop Button**: Toggles the timer on and off
+2. **Reset Button**: Sets the timer back to 0 and records the current time as a lap
+3. **Undo Button**: Resets the timer without recording a lap
+4. **Time Display**: Shows the current elapsed time in seconds
+5. **Average Display**: Shows the average time and number of recorded laps when `outputType` is `"average"`
+6. **List Display**: Shows a list of lap times when `outputType` is `"list"`
+
+To use the timer during scouting:
+
+1. Click "Start" when the robot begins the action you want to time
+2. Click "Stop" when the action is completed
+3. Click "Reset" to record the time and prepare for another measurement
+4. The final time(s) will be recorded in the QR code data according to the outputType setting
+5. Use "Undo" if you need to restart without recording the current time
+
+#### Data Format
+
+In the generated QR code, timer values are stored differently based on the outputType:
+
+- With `outputType: "average"`: A single numeric value representing the average of all recorded times in seconds.
+- With `outputType: "list"`: A comma-separated list of all recorded times in seconds.
+
+For example, if a robot completed three climbs in 12.5, 10.2, and 11.8 seconds:
+
+- With `outputType: "average"`, the QR code will contain `11.5` (the average)
+- With `outputType: "list"`, the QR code will contain `12.5,10.2,11.8` (all values)
+
+#### FRC Scouting Examples
+
+Timer inputs are particularly useful for FRC scouting in scenarios like:
+
+- **Climb Time**: Measure how long it takes for a robot to complete a climbing action
+- **Cycle Time**: Track the time between scoring actions to calculate scoring rate
+- **Defense Recovery**: Measure how quickly a robot recovers after being defended
+- **Auto Completion**: Time how long it takes to complete autonomous routines
+- **Intake Speed**: Measure how quickly a robot can intake game pieces
+
+For example, to track cycle times for scoring game pieces:
+
+```json
+{
+  "title": "Scoring Cycle Time",
+  "type": "timer",
+  "required": false,
+  "code": "scoringCycleTime",
+  "description": "Time between consecutive scoring actions",
+  "formResetBehavior": "reset"
+}
+```
+
+This allows scouts to accurately measure and compare the efficiency of different robots' scoring mechanisms and strategies.
+
+#### Best Practices for Timer Input
+
+1. **Clear Instructions**: Ensure scouts know exactly when to start and stop the timer
+2. **Consistent Measurement**: Define clear start and end points for timed actions
+3. **Multiple Timers**: Consider using separate timers for different phases or actions
+4. **Backup Method**: Have a secondary way to record time in case of user error
+5. **Practice Before Competition**: Make sure scouts are comfortable using the timer function before actual matches
