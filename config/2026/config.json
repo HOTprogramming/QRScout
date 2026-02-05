@@ -75,32 +75,6 @@
           "defaultValue": ""
         },
         {
-          "title": "Match Number",
-          "description": "Enter the match number.",
-          "type": "number",
-          "required": true,
-          "code": "matchNumber",
-          "formResetBehavior": "increment",
-          "defaultValue": 1
-        },
-        {
-          "title": "Robot",
-          "description": "The robot you are scouting this match, based on driver station position.",
-          "type": "select",
-          "required": true,
-          "code": "robot",
-          "formResetBehavior": "preserve",
-          "defaultValue": "R1",
-          "choices": {
-            "R1": "Red 1",
-            "R2": "Red 2",
-            "R3": "Red 3",
-            "B1": "Blue 1",
-            "B2": "Blue 2",
-            "B3": "Blue 3"
-          }
-        },
-        {
           "title": "Team Number",
           "description": "The team number of the robot you're scouting.",
           "type": "number",
@@ -112,17 +86,39 @@
           "max": 99999
         },
         {
+          "title": "Match Number",
+          "description": "Enter the match number.",
+          "type": "number",
+          "required": true,
+          "code": "matchNumber",
+          "formResetBehavior": "increment",
+          "defaultValue": 1
+        },
+        {
+          "title": "Alliance",
+          "description": "Select the alliance your robot is on.",
+          "type": "select",
+          "required": true,
+          "code": "robot",
+          "formResetBehavior": "preserve",
+          "defaultValue": "",
+          "choices": {
+            "Red": "Red",
+            "Blue": "Blue"
+          }
+        },
+        {
           "title": "Starting Position",
           "description": "The starting position of the robot.",
           "type": "select",
           "required": true,
-          "code": "Prsp",
+          "code": "startingPosition",
           "formResetBehavior": "reset",
           "defaultValue": "",
           "choices": {
-            "R1": "Outpost Side",
-            "R2": "Middle",
-            "R3": "Depot Side"
+            "Outpost": "Outpost Side",
+            "Middle": "Middle",
+            "Depot": "Depot Side"
           }
         },
         {
@@ -144,7 +140,7 @@
           "description": "Check if the robot moved during autonomous.",
           "type": "boolean",
           "required": false,
-          "code": "Mved",
+          "code": "moved",
           "formResetBehavior": "reset",
           "defaultValue": false
         },
@@ -153,7 +149,7 @@
           "description": "Select if the robot entered the neutral zone.",
           "type": "boolean",
           "required": false,
-          "code": "enterNZ",
+          "code": "enteredNeutral",
           "formResetBehavior": "reset",
           "defaultValue": false
         },
@@ -172,7 +168,7 @@
           "description": "Estimate the percentage of fuel that actually made it into the goal",
           "type": "range",
           "required": false,
-          "code": "autoScor",
+          "code": "autoScore",
           "formResetBehavior": "reset",
           "defaultValue": 3,
           "min": 0,
@@ -197,7 +193,7 @@
           "title": "Auto Foul",
           "type": "counter",
           "required": false,
-          "code": "auf",
+          "code": "autoFoul",
           "formResetBehavior": "reset",
           "defaultValue": 0,
           "min": 0,
@@ -208,14 +204,14 @@
           "description": "Select if the robot's alliance gained more points in auto.",
           "type": "boolean",
           "required": false,
-          "code": "enterWonA",
+          "code": "wonAuto",
           "formResetBehavior": "reset",
           "defaultValue": false
         }
       ]
     },
     {
-      "name": "Active",
+      "name": "Teleop",
       "fields": [
         {
           "title": "Scoring Time",
@@ -240,42 +236,17 @@
           "step": 1
         },
         {
-          "title": "Passing Time",
-          "description": "Time spent actively shuffling fuel",
-          "type": "timer",
+          "title": "Estimated Firing Rate",
+          "description": "Estimate the rate at which fuel leaves their shooter",
+          "type": "range",
           "required": false,
-          "code": "passTimeActive",
+          "code": "firingRate",
           "formResetBehavior": "reset",
           "defaultValue": 0,
-          "outputType": "list"
+          "min": 0,
+          "max": 20,
+          "step": 5
         },
-        {
-          "title": "Overall Role",
-          "description": "What did they do most? Don't overthink this. Just what do you think they spent the most time doing?",
-          "type": "select",
-          "required": false,
-          "code": "roleActive",
-          "formResetBehavior": "reset",
-          "defaultValue": "No",
-          "choices": {
-            "Offense": "Scored",
-            "Pass": "Passed from neutral",
-            "Defense": "Played defense"
-          }
-        },
-        {
-          "title": "Was Robot Defended by Other Alliance?",
-          "type": "boolean",
-          "required": false,
-          "code": "pinnedA",
-          "formResetBehavior": "reset",
-          "defaultValue": false
-        }
-      ]
-    },
-    {
-      "name": "Inactive",
-      "fields": [
         {
           "title": "Fuel Collected From Ground",
           "description": "Collected fuel from the ground",
@@ -293,38 +264,32 @@
           "code": "FFHP",
           "formResetBehavior": "reset",
           "defaultValue": false
-        },
+        }
+      ]
+    },
+    {
+      "name": "Endgame",
+      "fields": [
         {
-          "title": "Collecting and Passing Time",
-          "description": "Time spent actively projecting fuel into the hub",
-          "type": "timer",
-          "required": false,
-          "code": "passTimeInactive",
-          "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "outputType": "list"
-        },
-        {
-          "title": "Passing Zone",
-          "description": "Where did they pass from?",
+          "title": "Climbed Tower",
           "type": "select",
           "required": false,
-          "code": "passingZone",
+          "code": "climbedEndgame",
           "formResetBehavior": "reset",
           "defaultValue": "No",
           "choices": {
-            "Neutral": "Neutral",
-            "OP": "Opposing Alliance",
-            "Both": "Both",
-            "None": "None"
+            "No": "Didn't Climb",
+            "L1": "Level 1",
+            "L2": "Level 2",
+            "L3": "Level 3",
+            "F": "Failed Climb"
           }
         },
         {
-          "title": "Scored for No Reason?",
-          "description": "this does not include the following two seconds after transitions",
+          "title": "Was Robot Defended by Other Alliance?",
           "type": "boolean",
           "required": false,
-          "code": "stupidScoring",
+          "code": "wasDefended",
           "formResetBehavior": "reset",
           "defaultValue": false
         },
@@ -339,31 +304,42 @@
       ]
     },
     {
-      "name": "Endgame",
+      "name": "Postmatch",
       "fields": [
         {
-          "title": "Scoring Time",
-          "description": "Time spent actively projecting fuel to the hub",
-          "type": "timer",
+          "title": "Final Score",
+          "type": "text",
           "required": false,
-          "code": "scoreTimeEndgame",
+          "code": "finalScore",
           "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "outputType": "list"
+          "defaultValue": "",
+          "min": 0,
+          "max": 1000
         },
         {
-          "title": "Climbed Tower",
+          "title": "Score vs Passing",
+          "description": "Neither = 0, Only Shooting = 1, Only Passing = 5",
+          "type": "range",
+          "required": true,
+          "code": "scorePassRole",
+          "formResetBehavior": "reset",
+          "defaultValue": 0,
+          "min": 0,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "title": "Navigation to Neutral",
+          "description": "How did the robot get to the neutral zone?",
           "type": "select",
           "required": false,
-          "code": "climbed",
+          "code": "navToNeutral",
           "formResetBehavior": "reset",
-          "defaultValue": "No",
+          "defaultValue": "",
           "choices": {
-            "No": "Didn't Climb",
-            "L1": "Level 1",
-            "L2": "Level 2",
-            "L3": "Level 3",
-            "F": "Failed Climb"
+            "bar": "Under bar",
+            "bump": "Over bump",
+            "none": "N/A"
           }
         },
         {
@@ -381,76 +357,12 @@
           "code": "helpIFell",
           "formResetBehavior": "reset",
           "defaultValue": false
-        }
-      ]
-    },
-    {
-      "name": "Postmatch",
-      "fields": [
-        {
-          "title": "Navigation to Neutral",
-          "description": "How did the robot get to the neutral zone?",
-          "type": "select",
-          "required": false,
-          "code": "navTN",
-          "formResetBehavior": "reset",
-          "defaultValue": "",
-          "choices": {
-            "BAR": "Under bar",
-            "BUMP": "Over bump",
-            "N/A": "N/A"
-          }
-        },
-        {
-          "title": "Final Score",
-          "type": "text",
-          "required": false,
-          "code": "finalScore",
-          "formResetBehavior": "reset",
-          "defaultValue": "",
-          "min": 0,
-          "max": 4
-        },
-        {
-          "title": "Offense Skill",
-          "type": "range",
-          "required": false,
-          "code": "or",
-          "formResetBehavior": "reset",
-          "defaultValue": 3,
-          "min": 0,
-          "max": 5,
-          "step": 1
-        },
-        {
-          "title": "Defensive Skill",
-          "type": "range",
-          "required": false,
-          "code": "dr",
-          "formResetBehavior": "reset",
-          "defaultValue": 0,
-          "min": 0,
-          "max": 5,
-          "step": 1
-        },
-        {
-          "title": "Yellow/Red Card",
-          "type": "select",
-          "required": false,
-          "code": "yc",
-          "formResetBehavior": "reset",
-          "defaultValue": "No Card",
-          "choices": {
-            "No Card": "No Card",
-            "Yellow": "Yellow Card",
-            "Red": "Red Card"
-          }
         },
         {
           "title": "Comments",
           "type": "text",
           "required": false,
-          "code": "co",
+          "code": "comments",
           "formResetBehavior": "reset",
           "defaultValue": "",
           "min": 0,
