@@ -113,15 +113,11 @@ export default function TimerInput(props: ConfigurableInputProps) {
     setTime(0);
   }
 
+  // Keep store in sync with current timer value so QR code uses live value when generated (no submit needed)
   useEffect(() => {
-    if (times.length > 0) {
-      if (data.outputType === 'average') {
-        updateValue(props.code, getAvg(times));
-      } else {
-        updateValue(props.code, times);
-      }
-    }
-  }, [times, props.code]);
+    const valueInSeconds = Number((time / 1000).toFixed(3));
+    updateValue(props.code, valueInSeconds);
+  }, [time, props.code]);
 
   // Format time display (milliseconds to seconds with 2 decimal places)
   const formattedTime = (time / 1000).toFixed(2);
@@ -130,15 +126,16 @@ export default function TimerInput(props: ConfigurableInputProps) {
     <div className="my-2 flex flex-col items-center justify-center">
       <h2 className="px-4 text-2xl dark:text-white">{formattedTime}</h2>
       <div className="my-2 flex flex-row items-center justify-center gap-4">
-        <Button variant="outline" onClick={startStop}>
+        <Button
+          variant="outline"
+          onClick={startStop}
+          className="h-32 w-32 min-h-32 min-w-32 p-0"
+        >
           {isRunning ? (
-            <Pause className="size-4" />
+            <Pause className="size-7" />
           ) : (
-            <Play className="size-4" />
+            <Play className="size-7" />
           )}
-        </Button>
-        <Button variant="outline" disabled={time === 0} onClick={lap}>
-          <TimerReset className="size-4" />
         </Button>
         <Button variant="outline" onClick={() => resetState({ force: false })}>
           <Undo className="size-4" />
