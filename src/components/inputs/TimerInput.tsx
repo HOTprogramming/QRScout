@@ -1,6 +1,6 @@
 import { useEvent } from '@/hooks';
 import { inputSelector, updateValue, useQRScoutState } from '@/store/store';
-import { Pause, Play, TimerReset, Undo } from 'lucide-react';
+import { Pause, Play, Undo } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '../ui/button';
 import { TimerInputData } from './BaseInputProps';
@@ -101,16 +101,6 @@ export default function TimerInput(props: ConfigurableInputProps) {
 
   function startStop() {
     setIsRunning(!isRunning);
-  }
-
-  function lap() {
-    // Convert milliseconds to seconds with 2 decimal places
-    const currentTimeInSeconds = Number(
-      (timeAccumulatorRef.current / 1000).toFixed(3),
-    );
-    setTimes([...times, currentTimeInSeconds]);
-    timeAccumulatorRef.current = 0;
-    setTime(0);
   }
 
   // Keep store in sync with current timer value so QR code uses live value when generated (no submit needed)
