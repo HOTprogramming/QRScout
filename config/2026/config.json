@@ -226,10 +226,10 @@
         {
           "title": "Accuracy",
           "type": "select",
-          "required": false,
+          "required": true,
           "code": "Accuracy",
           "formResetBehavior": "reset",
-          "defaultValue": "No",
+          "defaultValue": "",
           "choices": {
             "1": "Made zero/very few",
             "2": "Missed most",
